@@ -122,6 +122,25 @@ async def get_on_page_seo_guide() -> dict:
             "error": "Required file 'on-page-seo-guide.md' not found in script directory"
         }
 
+@mcp.tool()
+async def get_chair_statement() -> dict:
+    """Get the Writing Guide for the Chair Statement."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        with open(os.path.join(script_dir, 'chair-statement.md'), 'r') as f:
+            content = f.read()
+            return {
+                "success": True,
+                "data": {
+                    "content": content
+                }
+            }
+    except FileNotFoundError:
+        return {
+            "success": False,
+            "error": "Required file 'chair-statement.md' not found in script directory"
+        }
+
 
 def main() -> None:
     """Run the MCP server."""
