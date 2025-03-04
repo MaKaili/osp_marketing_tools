@@ -141,6 +141,43 @@ async def get_chair_statement() -> dict:
             "error": "Required file 'chair-statement.md' not found in script directory"
         }
 
+@mcp.tool()
+async def get_esg_report() -> dict:
+    """Get the Writing Guide for the ESG Report."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        with open(os.path.join(script_dir, 'esg-report.md'), 'r') as f:
+            content = f.read()
+            return {
+                "success": True,
+                "data": {
+                    "content": content
+                }
+            }
+    except FileNotFoundError:
+        return {
+            "success": False,
+            "error": "Required file 'esg-report.md' not found in script directory"
+        }
+        
+@mcp.tool()
+async def get_press_release() -> dict:
+    """Get the Writing Guide for the Press Release."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        with open(os.path.join(script_dir, 'press-release.md'), 'r') as f:
+            content = f.read()
+            return {
+                "success": True,
+                "data": {
+                    "content": content
+                }
+            }
+    except FileNotFoundError:
+        return {
+            "success": False,
+            "error": "Required file 'press-release.md' not found in script directory"
+        }
 
 def main() -> None:
     """Run the MCP server."""
